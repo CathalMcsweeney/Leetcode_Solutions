@@ -1,0 +1,54 @@
+class Solution(object):
+    def longestCommonPrefix2(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        ans = ""
+        strs = sorted(strs)
+            
+        fWord = strs[0]
+        lWord = strs[-1]
+        for i in range(len(fWord)):
+            if fWord[i] != lWord[i]:
+                return ans
+            ans += fWord[i]
+        return ans
+        
+    def longestCommonPrefix(self, strs):
+        ans =""
+        maxLength = len(strs[0])
+        #finds smallest word to min loops
+        for string in strs:
+            if len(string) < maxLength:
+                maxLength = len(string)
+
+        for j in range(maxLength):
+            prefix = []
+            i = 1
+            same = True
+            for string in strs:
+                if string == "":
+                    return ""
+                if len(prefix) < 1:
+                    prefix.append(string[j])
+                    continue
+                if string[j] != prefix[i-1]:
+                    same = False
+                    break
+                prefix.append(string[j])
+                #print(string[0])
+                i += 1
+            if same:
+                ans += prefix[0]
+            else:
+                break
+        return ans
+
+solution = Solution()
+
+strs = ["flower","flow","flight"]
+strs2 = ["hello", "slainte", "questions"]
+strs = ["flower","flow","flight"]
+print(solution.longestCommonPrefix(strs))
+print(solution.longestCommonPrefix2(strs2))
