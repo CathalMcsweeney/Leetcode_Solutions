@@ -31,8 +31,8 @@ class Solution(object):
             mid = (left + right) // 2
             if target == nums[mid]:
                 return mid
-            if target < mid:
-                right = nums[mid]
+            if target < nums[mid]:
+                right = mid
             else:
                 left = mid + 1
 
@@ -40,6 +40,6 @@ class Solution(object):
     
 solution = Solution()
 nums = [1,3,5,6]
-target = 7
+target = 2
 
 print(solution.searchInsertFaster(nums, target))
