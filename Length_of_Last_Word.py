@@ -23,10 +23,17 @@ class Solution(object):
 
         return length
     
+    def wishIThoughtOfThisFirst(self, s):
+        return len(s.split()[-1])
+
 solution = Solution()
 
 s = "Hello World"
 
+ss = "   fly me   to   the moon  "
+
 print(solution.lengthOfLastWord(s))
 
 print(solution.lengthOfLastWord_Improved(s))
+
+print(solution.wishIThoughtOfThisFirst(ss))
