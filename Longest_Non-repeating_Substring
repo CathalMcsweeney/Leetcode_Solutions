@@ -1,0 +1,39 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count = 0
+        ans = 0
+
+        #letters_dict = {char: 0 for name in df['Name'].unique()}#
+        letters_dict = {char: (0, 0) for char in set(s)}
+
+        index = 0
+
+        while index < len(s):
+            char = s[index]
+            if letters_dict[char][0] == 0:
+                count += 1
+                if count > ans:
+                    ans = count
+                letters_dict[char] = (letters_dict[char][0] + 1, index)
+            else:
+                index = letters_dict[char][1]+1
+                count = 1
+                for x in letters_dict:
+                    letters_dict[x] = (0, letters_dict[x][1])
+                char = s[index]
+                letters_dict[char] = (letters_dict[char][0] + 1, index)
+            index += 1
+
+        return ans
+        
+
+solution = Solution()
+
+#s = "aab"
+#print(solution.lengthOfLongestSubstring(s))
+s = "dvdf"
+print(solution.lengthOfLongestSubstring(s))
